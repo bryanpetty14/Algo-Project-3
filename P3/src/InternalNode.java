@@ -12,8 +12,8 @@ public class InternalNode extends Node{
 	@Override
 	public void addBit(String s) {
 		// TODO Auto-generated method stub
-		left.addBit(s);
-		right.addBit(s);
+		left.addBit(s+'0');
+		right.addBit(s+'1');
 	}
 
 }
