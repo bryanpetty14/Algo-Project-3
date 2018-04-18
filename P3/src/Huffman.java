@@ -3,7 +3,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Huffman {
+public class Huffman
+{
 	public static int totChars = 0;
 	public static int diffChars = 0;
 	public static int maxCodeLen = 0;
@@ -13,7 +14,8 @@ public class Huffman {
 	public static double totReduc = 0;
 	private static ArrayList<Leaf> tempArray = new ArrayList<Leaf>();
 
-	public void resetVals() {
+	public void resetVals()
+	{
 		totChars = 0;
 		diffChars = 0;
 		maxCodeLen = 0;
@@ -23,43 +25,69 @@ public class Huffman {
 		totReduc = 0;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		tempArray.clear();
 		String toEncode = "OneLine";
 		huffmanEncode(toEncode);
 		doEncoding();
-		//TODO display the value like she did in the project
+		// TODO display the value like she did in the project
+
+		System.out.println("Name: " + toEncode + "\n" + "TotalChars: " + totChars + "\n" + "DiffChars: " + diffChars
+				+ "\n" + "MaxCodeLen: " + maxCodeLen + "\n" + "AveCodeLen: " + avdCodeLen + "\n" + "FileLen: " + FileLen
+				+ "\n" + "ByteFileLen: " + byteFileLen + "\n" + "HuffmanReduction: " + totReduc + "\n");
+
 		tempArray.clear();
 	}
 
-	private static void doEncoding() {
+	private static void doEncoding()
+	{
 		HuffmanCoding hc = new HuffmanCoding(tempArray);
 		hc.encode();
-		//TODO set the static values above after encoding is done
+		// TODO set the static values above after encoding is done
+		// MaxCodLen AvdCodeLen FileLen and totReduc
+
+		// MaxCodLen
+
+		maxCodeLen = hc.getMaxCharLength();
+		avdCodeLen = hc.getAverage();
+		FileLen = hc.getFileLength();
+
+		totReduc = FileLen / byteFileLen;
 	}
 
-	private static void huffmanEncode(String toEncode) {
+	private static void huffmanEncode(String toEncode)
+	{
 		File temp = new File(toEncode);
 		Scanner scanner = null;
-		try {
+		try
+		{
 			scanner = new Scanner(temp);
 			int lineCount = 0;
-			while (scanner.hasNextLine()) {
+			while(scanner.hasNextLine())
+			{
 				String line = scanner.nextLine();
 				lineCount++;
 				totChars += line.length() + 1;
-				for (int i = 0; i < line.length(); i++) {
-					if (tempArray.size() == 0) {
+				for(int i = 0; i < line.length(); i++)
+				{
+					if(tempArray.size() == 0)
+					{
 						Leaf aLeaf = new Leaf(1);
 						aLeaf.setChar(line.charAt(i));
 						tempArray.add(aLeaf);
-					} else {
-						for (int j = 0; j < tempArray.size(); j++) {
-							if (tempArray.get(j).getChar() == line.charAt(i)) {
+					}
+					else
+					{
+						for(int j = 0; j < tempArray.size(); j++)
+						{
+							if(tempArray.get(j).getChar() == line.charAt(i))
+							{
 								tempArray.get(j).incWeight();
 								break;
 							}
-							if (j + 1 == tempArray.size()) {
+							if(j + 1 == tempArray.size())
+							{
 								Leaf aLeaf = new Leaf(1);
 								aLeaf.setChar(line.charAt(i));
 								tempArray.add(aLeaf);
@@ -69,18 +97,24 @@ public class Huffman {
 					}
 				}
 			}
-			if(lineCount != 0){
+			if(lineCount != 0)
+			{
 				Leaf aLeaf = new Leaf(lineCount);
 				aLeaf.setChar('\n');
 				tempArray.add(aLeaf);
 			}
 			diffChars = tempArray.size();
-			byteFileLen = totChars*8;
-		} catch (Exception e) {
+			byteFileLen = totChars * 8;
+		}
+		catch(Exception e)
+		{
 			System.out.println("broke");
-		} finally {
-			
-			if (scanner != null) {
+		}
+		finally
+		{
+
+			if(scanner != null)
+			{
 				scanner.close();
 			}
 		}
