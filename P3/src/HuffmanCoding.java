@@ -32,17 +32,12 @@ public class HuffmanCoding
 
 	public int getFileLength()
 	{
-		// for the record, I tried using the myList array in this class but it
-		// lacks the bits variable so I had to make due with my workaround for
-		// now
 
-		Huffman theHuff = new Huffman();
-		ArrayList<Leaf> temp = theHuff.getList();
 		int rtn = 0;
 
-		for(int i = 0; i < temp.size(); i++)
-		{
-			rtn += temp.get(i).weight * temp.get(i).bits.length();
+		for(int i = 0; i < myList.size(); i++){
+			Leaf leaf = (Leaf) myList.get(i);
+			rtn += myList.get(i).weight * leaf.bits.length();
 		}
 
 		return rtn;

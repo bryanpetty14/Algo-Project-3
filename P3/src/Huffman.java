@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * Huffman class for calling all methods and testing class
+ * 
  * @author Bryan Petty
  * @author Matt Passarelli
  * @author Sam Reinhart
@@ -49,8 +50,8 @@ public class Huffman
 	}
 
 	/**
-	 * Does the encoding by call HuffmanCoding's encode method.
-	 * ALso sets needed variables from public methods in HuffmanCoding
+	 * Does the encoding by call HuffmanCoding's encode method. ALso sets needed
+	 * variables from public methods in HuffmanCoding
 	 */
 	private static void doEncoding()
 	{
@@ -132,12 +133,4 @@ public class Huffman
 
 	}
 
-	/**
-	 * Returns the ArrayList containing the Leafs
-	 * @return ArrayList<<Leaf>Leaf> List of Leafs
-	 */
-	public ArrayList<Leaf> getList()
-	{
-		return tempArray;
-	}
 }
