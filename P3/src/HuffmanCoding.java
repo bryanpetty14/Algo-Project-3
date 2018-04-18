@@ -30,22 +30,28 @@ public class HuffmanCoding
 		return temp;
 	}
 
-	public double getAverage()
-	{
-		// TODO return the average amount of bits per leaf
-		return 0;
-	}
-
 	public int getFileLength()
 	{
-		// TODO return the length of the compressed file
-		return 0;
+		// for the record, I tried using the myList array in this class but it
+		// lacks the bits variable so I had to make due with my workaround for
+		// now
+
+		Huffman theHuff = new Huffman();
+		ArrayList<Leaf> temp = theHuff.getList();
+		int rtn = 0;
+
+		for(int i = 0; i < temp.size(); i++)
+		{
+			rtn += temp.get(i).weight * temp.get(i).bits.length();
+		}
+
+		return rtn;
 	}
 
 	public void encode()
 	{
 		int listSize = pq.size();
-		// TODO Auto-generated method stub
+
 		if(pq.size() == 1)
 		{
 			pq.peek().addBit("0");

@@ -1,8 +1,13 @@
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
+/**
+ * Huffman class for calling all methods and testing class
+ * @author Bryan Petty
+ * @author Matt Passarelli
+ * @author Sam Reinhart
+ */
 public class Huffman
 {
 	public static int totChars = 0;
@@ -14,6 +19,9 @@ public class Huffman
 	public static double totReduc = 0;
 	private static ArrayList<Leaf> tempArray = new ArrayList<Leaf>();
 
+	/**
+	 * Resets all field Variables
+	 */
 	public void resetVals()
 	{
 		totChars = 0;
@@ -40,20 +48,23 @@ public class Huffman
 		tempArray.clear();
 	}
 
+	/**
+	 * Does the encoding by call HuffmanCoding's encode method.
+	 * ALso sets needed variables from public methods in HuffmanCoding
+	 */
 	private static void doEncoding()
 	{
 		HuffmanCoding hc = new HuffmanCoding(tempArray);
 		hc.encode();
-		// TODO set the static values above after encoding is done
-		// MaxCodLen AvdCodeLen FileLen and totReduc
-
-		// MaxCodLen
 
 		maxCodeLen = hc.getMaxCharLength();
-		avdCodeLen = hc.getAverage();
+		avdCodeLen = Math.round(((double) hc.getFileLength() / totChars) * 10.0) / 10.0;
 		FileLen = hc.getFileLength();
+		totReduc = (double) FileLen / (double) byteFileLen;
 
-		totReduc = FileLen / byteFileLen;
+		// this ugly line just rounds it to 4 decimal places so that when we
+		// move the decimal eventually, we don't need to round then
+		totReduc = Math.round(totReduc * 10000.0) / 10000.0;
 	}
 
 	private static void huffmanEncode(String toEncode)
@@ -121,4 +132,12 @@ public class Huffman
 
 	}
 
+	/**
+	 * Returns the ArrayList containing the Leafs
+	 * @return ArrayList<<Leaf>Leaf> List of Leafs
+	 */
+	public ArrayList<Leaf> getList()
+	{
+		return tempArray;
+	}
 }
