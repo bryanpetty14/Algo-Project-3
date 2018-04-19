@@ -14,7 +14,7 @@ public class HuffmanCoding
 		hm = new HashMap<Character, String>();
 		myList = new ArrayList<Node>();
 	}
-
+	
 	public int getMaxCharLength()
 	{
 		int temp = 0;
@@ -46,7 +46,9 @@ public class HuffmanCoding
 	public void encode()
 	{
 		int listSize = pq.size();
-
+		if(listSize == 0){
+			return;
+		}
 		if(pq.size() == 1)
 		{
 			pq.peek().addBit("0");

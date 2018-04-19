@@ -1,0 +1,51 @@
+		maxCodeLen = hc.getMaxCharLength();
+		FileLen = hc.getFileLength();
+		avdCodeLen = (double)FileLen/(double)totChars;
+		
+		
+		______________________________________
+			public int getMaxCharLength() {
+				if(myList.isEmpty()){
+			return 0;
+		}
+		Leaf temp = (Leaf)myList.get(0);
+		int max = hm.get(temp.getChar()).length();
+		for(int i = 1; i<myList.size();i++){
+			temp = (Leaf)myList.get(i);
+			if(max<hm.get(temp.getChar()).length()){
+				max = hm.get(temp.getChar()).length();
+			}
+		}
+		// TODO return the max length of the bit strings created
+		return max;
+		}
+		
+		___________________________________
+			public double getAverage() {
+		if(myList.isEmpty()){
+			return 0;
+		}
+		Leaf temp = (Leaf)myList.get(0);
+		int sum = hm.get(temp.getChar()).length();
+		for(int i = 1; i<myList.size();i++){
+			temp = (Leaf)myList.get(i);
+			sum += hm.get(temp.getChar()).length();
+		}
+		// TODO Auto-generated method stub
+		return sum/myList.size();
+	}
+	
+	________________________________
+		public int getFileLength() {
+		if(myList.isEmpty()){
+			return 0;
+		}
+		Leaf temp = (Leaf)myList.get(0);
+		int total = hm.get(temp.getChar()).length()*temp.weight;
+		for(int i = 1; i<myList.size();i++){
+			temp = (Leaf)myList.get(i);
+			total += hm.get(temp.getChar()).length() * temp.weight;
+		}
+		// TODO Auto-generated method stub
+		return total;
+	}
