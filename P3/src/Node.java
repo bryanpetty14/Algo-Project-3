@@ -34,6 +34,9 @@ public abstract class Node
 		}
 		return 1;
 	}
+	/**
+	 * Increments the weight of the node by one
+	 */
 	public void incWeight(){
 		weight++;
 	}
